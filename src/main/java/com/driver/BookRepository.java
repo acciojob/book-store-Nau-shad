@@ -9,33 +9,63 @@ public class BookRepository {
     public BookRepository(){
         
     }
+   private Map<Integer,Book> bookById = new HashMap<>(); // for store Id and Book details by class
+   private Map<String ,Book> bookByAuthor = new HashMap<>();
+   private Map<String,Book> bookByGenre = new HashMap<>();
 
+   //**************************constructor ***********************************//
     public Book save(Book book){
-        return null;
+
+        bookById.put(book.getId(), book);
+        bookByAuthor.put(book.getAuthor(),book);
+        bookByGenre.put(book.getGenre(),book);
+         return book;
     }
+//###########################################constructor ################################//
 
     public Book findBookById(int id){
-
-        return null;
+      if(!bookById.containsKey(id)){
+          return null;
+      }
+       Book book = bookById.get(id);
+      return book;
     }
 
     public List<Book> findAll(){
-        return null;
+        ArrayList<Book> allBook = new ArrayList<>();
+        for(Book b : bookById.values()){
+              allBook.add(b);
+        }
+        return allBook;
     }
 
     public void deleteBookById(int id){
-        return;
+        if(bookById.containsKey(id)){
+            Book book = bookById.get(id);
+            bookById.remove(book);
+        }
+      // return "Book deleted By Id";
     }
 
     public void deleteAll(){
-        return;
+        bookById.clear();
+       // return "All books deleted";
     }
 
     public List<Book> findBooksByAuthor(String author){
-        return null;
+        ArrayList<Book> BookByAuthor = new ArrayList<>();
+        for(Book b : bookById.values()){
+            BookByAuthor.add(b);
+        }
+        return BookByAuthor;
     }
 
     public List<Book> findBooksByGenre(String genre){
-        return null;
+        ArrayList<Book> BookByGenre = new ArrayList<>();
+        for(Book b : bookById.values()){
+            BookByGenre.add(b);
+        }
+        return BookByGenre;
+
     }
 }
