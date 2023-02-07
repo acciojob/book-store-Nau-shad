@@ -14,46 +14,56 @@ public class BookController {
     BookService bookService;
 
     // One example controller, make the rest by yourself
-    @PostMapping("/create-book")
+    @PostMapping("/books/create-book ")
     public ResponseEntity createBook(@RequestBody Book book){
         Book newBook = bookService.createBook(book);
         return new ResponseEntity<>(newBook, HttpStatus.CREATED);
     }
 
-    @GetMapping("/get-book-by-id/{id}")
+    @GetMapping("/books/get-book-by-id/{id}")
     public ResponseEntity findBookById(@PathVariable("id") Integer id){
         Book newBook = bookService.findBookById(String.valueOf(id));
         return new ResponseEntity<>(newBook, HttpStatus.FOUND);
     }
 
-    @GetMapping("/get-all-books")
+    @GetMapping("/books/get-all-books")
 
     public ResponseEntity findAllBooks(){
         List<Book> allBooks = bookService.findAllBooks();
         return new ResponseEntity<>(allBooks, HttpStatus.FOUND);
     }
 
-    @GetMapping("/get-books-by-author")
+    @GetMapping("/books/get-books-by-author")
     public ResponseEntity findBooksByAuthor(@RequestParam("author") String author){
         List<Book> booksByAuthor= bookService.findBooksByAuthor(author);
         return new ResponseEntity<>(booksByAuthor, HttpStatus.FOUND);
     }
 
-    @GetMapping("/get-books-by-genre")
+    @GetMapping("/books/get-books-by-genre")
     public ResponseEntity findBooksByGenre(@RequestParam("genre") String genre){
         List<Book> BooksByGenre= bookService.findBooksByGenre(genre);
         return new ResponseEntity<>(BooksByGenre, HttpStatus.FOUND);
     }
 
-    @DeleteMapping("/delete-book-by-id/{id}")
-    public void deleteBookById(String id)
+    @DeleteMapping("/books/delete-book-by-id/{id}")
+    public ResponseEntity  deleteBookById(String id)
     {
         bookService.deleteBookById(id);
+        return new ResponseEntity("Success", HttpStatus.OK);
     }
 
-    public void deleteAllBooks(){
+    @DeleteMapping("/books/delete-all-books")
+    public ResponseEntity  deleteAllBooks(){
 
         bookService.deleteAllBooks();
+        return new ResponseEntity("Success", HttpStatus.OK);
     }
+    /*
+    / //delete all books
+    @DeleteMapping("/books/delete-all-books")
+    public ResponseEntity deleteAllBooks(){
+        bookService.deleteAllBooks();
+        return new ResponseEntity("Success", HttpStatus.OK);
+    }*/
 
 }

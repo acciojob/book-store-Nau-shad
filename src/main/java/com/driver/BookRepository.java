@@ -49,6 +49,8 @@ public class BookRepository {
 
     public void deleteAll(){
         bookById.clear();
+        bookByGenre.clear();
+        bookByAuthor.clear();
        // return "All books deleted";
     }
 
