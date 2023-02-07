@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 public class BookRepository {
 
     public BookRepository(){
-        
+        super();
     }
    private Map<Integer,Book> bookById = new HashMap<>(); // for store Id and Book details by class
    private Map<String ,Book> bookByAuthor = new HashMap<>();

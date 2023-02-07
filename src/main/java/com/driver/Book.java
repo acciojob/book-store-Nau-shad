@@ -12,8 +12,21 @@ public class Book {
 
      public Book(){
 
-
+      super();
      }
+
+     public Book(int id) {
+          this.id = id;
+     }
+
+
+     public Book(String genre) {
+          this.genre = genre;
+     }
+
+
+
+
 
      public Book(int id, String name, String genre, String author) {
           this.id = id;
